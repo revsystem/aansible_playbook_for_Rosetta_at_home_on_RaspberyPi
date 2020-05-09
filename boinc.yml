@@ -1,0 +1,6 @@
+---
+- hosts: boinc
+  become: yes
+  roles:
+    - common
+    - boinc

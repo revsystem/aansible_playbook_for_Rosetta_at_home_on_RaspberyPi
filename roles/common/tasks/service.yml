@@ -1,0 +1,11 @@
+---
+- name: stop and disable services.
+  service:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    enabled: "{{ item.enabled }}"
+  with_items:
+    - { name: rsyslog, state: stopped, enabled: no }
+    - { name: bluetooth, state: stopped, enabled: no }
+    - { name: cron, state: stopped, enabled: no }
+  tags: service_stop

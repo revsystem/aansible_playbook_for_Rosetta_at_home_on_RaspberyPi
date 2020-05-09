@@ -1,0 +1,50 @@
+---
+- import_tasks: kernel.yml
+
+- name: copy zram.sh.
+  copy:
+    src: usr/bin/zram.sh
+    dest: /usr/bin/zram.sh
+    backup: yes
+    owner: root
+    group: root
+    mode: 0755
+  tags: boinc_setup
+
+- name: add line to run zram.sh script on boot.
+  lineinfile:
+    state: present
+    dest: /etc/rc.local
+    insertbefore: '^exit 0'
+    line: /usr/bin/zram.sh &
+  tags: boinc_setup
+
+- name: install boinc client.
+  apt:
+    name: ['boinc-client', 'boinctui']
+    state: latest
+  tags: 
+    - boinc_setup
+
+- name: insert options to cc_config.xml.
+  blockinfile:
+    dest: /var/lib/boinc-client/cc_config.xml
+    insertbefore: '^</cc_config>'
+    content: |
+      <options>
+        <alt_platform>aarch64-unknown-linux-gnu</alt_platform>
+        <allow_remote_gui_rpc>1</allow_remote_gui_rpc>
+      </options>
+  tags: boinc_setup
+
+- name: insert vram setting to global_prefs_override.xml
+  blockinfile:
+    dest: /etc/boinc-client/global_prefs_override.xml
+    insertbefore: '^</global_preferences>'
+    content: |
+      <max_ncpus_pct>100.000000</max_ncpus_pct>  
+      <vm_max_used_pct>90.000000</vm_max_used_pct>
+      <ram_max_used_busy_pct>300.000000</ram_max_used_busy_pct>
+      <ram_max_used_idle_pct>300.000000</ram_max_used_idle_pct>
+      <cpu_usage_limit>100.000000</cpu_usage_limit>
+  tags: boinc_setup

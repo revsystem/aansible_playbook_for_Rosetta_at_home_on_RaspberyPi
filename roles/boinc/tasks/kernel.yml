@@ -1,0 +1,16 @@
+---
+- name: get the 64bit kernel.
+  # WARNING!
+  # usually you must RUN the rpi-update command manually.
+  # https://www.raspberrypi.org/forums/viewtopic.php?t=250730
+  command: rpi-update
+  tags: [never, rpi_update]
+
+- name: switch to 64-bit kernel & redule using GPU mem.
+  lineinfile:
+    dest: /boot/config.txt
+    line: "{{ item }}"
+  with_items:
+    - 'arm_64bit=1'
+    - 'gpu_mem=16'
+  tags: boinc_setup
