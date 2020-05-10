@@ -5,6 +5,64 @@
 Target: Raspberry Pi 3B+
 This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/rosetta/) with BOINC client on Raspberry Pi 3B+.
 
+## How to use
+
+1. Setting up your Raspberry Pi 3B+ as you can connect with SSH.
+
+1. Check your Raspberry Pi 3B+ IP address and write down to ssh.config
+
+1. get the 64bit kernel
+
+    WARNING
+
+    As https://www.raspberrypi.org/forums/viewtopic.php?t=250730 says "This is for bleeding edge testers. Things may not work. Backing up, or using a fresh sdcard is a wise precaution."
+
+    ```shell
+    ansible-playbook boinc.yml -i hosts --tags=rpi_update --diff
+    ```
+
+1. Setting up for BOINC.
+
+    ```shell
+    ansible-playbook boinc.yml -i hosts --diff
+    ```
+
+1. Create your Rosetta@home account.
+
+    Access to [Rosetta@hone](http://boinc.bakerlab.org/rosetta/) and create your account if you don't have it.
+
+1. Get you account key.
+
+    ```shell
+    boinccmd --lookup_account http://boinc.bakerlab.org/rosetta/ <your_email> <your_password>
+    ```
+
+    then you see the below message. copy the account key string.
+
+    ```shell
+    oll status: operation in progress
+    poll status: operation in progress
+    account key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    ```
+
+1. Join to the "Rosetta@home"
+
+    ```shell
+    boinccmd --project_attach http://boinc.bakerlab.org/rosetta/ <your_account_key>
+    ```
+
+### GUI like interface
+
+You may be comfortable using the `boinctui`.
+
+```shell
+boinctui
+```
+
+<img src="https://github.com/revsystem/raspberry-ansible/blob/master/images/boinctui.png" width="640" alt="boinctui" />
+
+Using `F9` key, you could access the menu bar. select the 'Projects', you can see 'Rosetta@home'. In this menu, you can suspend / resume / update the project same as Windows/MacOS BOINC Client manager.
+
 ## References
 
 - [Raspberry PiでRosetta@homeに参加する - Qiita](https://qiita.com/izewfktvy533zjmn/items/0d520a6d1ec381bd65a2)

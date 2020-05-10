@@ -1,6 +1,7 @@
 ---
 - import_tasks: kernel.yml
 
+# https://www.reddit.com/r/BOINC/comments/g0r0wa/running_rosetta_covid19_workunits_on_raspberry_pi/
 - name: copy zram.sh.
   copy:
     src: usr/bin/zram.sh
@@ -23,7 +24,7 @@
   apt:
     name: ['boinc-client', 'boinctui']
     state: latest
-  tags: 
+  tags:
     - boinc_setup
 
 - name: insert options to cc_config.xml.
@@ -42,9 +43,9 @@
     dest: /etc/boinc-client/global_prefs_override.xml
     insertbefore: '^</global_preferences>'
     content: |
-      <max_ncpus_pct>100.000000</max_ncpus_pct>  
+      <max_ncpus_pct>100.000000</max_ncpus_pct>
       <vm_max_used_pct>90.000000</vm_max_used_pct>
       <ram_max_used_busy_pct>300.000000</ram_max_used_busy_pct>
-      <ram_max_used_idle_pct>300.000000</ram_max_used_idle_pct>
+      <ram_max_used_idle_pct>300.000000</ram_max_used_idle_pc t>
       <cpu_usage_limit>100.000000</cpu_usage_limit>
   tags: boinc_setup
