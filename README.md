@@ -36,7 +36,7 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
 1. Get you account key.
 
     ```shell
-    boinccmd --lookup_account http://boinc.bakerlab.org/rosetta/ <your_email> <your_password>
+    boinccmd --lookup_account https://boinc.bakerlab.org/rosetta/ <your_email> <your_password>
     ```
 
     then you see the below message. copy the account key string.
