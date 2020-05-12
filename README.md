@@ -17,8 +17,10 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
 
     As https://www.raspberrypi.org/forums/viewtopic.php?t=250730 says "This is for bleeding edge testers. Things may not work. Backing up, or using a fresh sdcard is a wise precaution."
 
+    execute below command on Raspberry Pi.
+
     ```shell
-    ansible-playbook boinc.yml -i hosts --tags=rpi_update --diff
+    sudo rpi-update
     ```
 
 1. Setting up for BOINC.
@@ -65,6 +67,7 @@ Using `F9` key, you could access the menu bar. select the 'Projects', you can se
 
 ## References
 
+- [Fold for Covid - Donate spare compute capacity for COVID-19 research](https://foldforcovid.io/)
 - [Raspberry PiでRosetta@homeに参加する - Qiita](https://qiita.com/izewfktvy533zjmn/items/0d520a6d1ec381bd65a2)
 - [Pi4 64-bit raspbian kernel for testing - Focus on Pi4 - Raspberry Pi Forums](https://www.raspberrypi.org/forums/viewtopic.php?t=250730)
 - [Running Rosetta (COVID-19 workunits) on Raspberry Pi 3B+ (how to guide) : BOINC](https://www.reddit.com/r/BOINC/comments/g0r0wa/running_rosetta_covid19_workunits_on_raspberry_pi/)
