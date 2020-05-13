@@ -2,14 +2,12 @@
 
 ## Overview
 
-Target: Raspberry Pi 3B+
+Target: Raspberry Pi 3B+, Raspbian Lite ( I'm using `Raspbian Lite (A port of Debian with no desktop environment))
 This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/rosetta/) with BOINC client on Raspberry Pi 3B+.
 
 ## How to use
 
 1. Setting up your Raspberry Pi 3B+ as you can connect with SSH.
-
-1. Check your Raspberry Pi 3B+ IP address and write down to ssh.config
 
 1. get the 64bit kernel
 
@@ -23,15 +21,58 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
     sudo rpi-update
     ```
 
+    then reboot OS.
+
+    ```shell
+    sudo reboot
+    ```
+
+1. Clone git repository
+
+    ```shell
+    git clone https://github.com/revsystem/raspberry-ansible.git
+    cd raspberry-ansible/
+    ```
+
+1. Setting up for Ansible playbook
+
+    Check your Raspberry Pi 3B+ IP address and write down to ssh.config like below.
+
+    ```shell
+    vi ssh.conf
+    ```
+
+    ```text
+    Host boinc-1
+    HostName 192.168.1.45
+    ```
+
+    This ansible playbook set the hostname based on `Host` in ssh.conf.
+    If you want to set another host name, please edit `Host` section.
+
+    ---
+
+    SSH user account name is in group_vars/all.yml.
+
+    ```yaml
+    ansible_ssh_user: pi
+    ```
+
 1. Setting up for BOINC.
 
     ```shell
     ansible-playbook boinc.yml -i hosts --diff
     ```
 
+    then reboot OS.
+
+    ```shell
+    sudo reboot
+    ```
+
 1. Create your Rosetta@home account.
 
-    Access to [Rosetta@hone](http://boinc.bakerlab.org/rosetta/) and create your account if you don't have it.
+    Access to [Rosetta@hone](https://boinc.bakerlab.org/rosetta/) and create your account if you don't have it.
 
 1. Get you account key.
 
