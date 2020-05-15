@@ -13,7 +13,7 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
 
     WARNING
 
-    As https://www.raspberrypi.org/forums/viewtopic.php?t=250730 says "This is for bleeding edge testers. Things may not work. Backing up, or using a fresh sdcard is a wise precaution."
+    As <https://www.raspberrypi.org/forums/viewtopic.php?t=25073> says "This is for bleeding edge testers. Things may not work. Backing up, or using a fresh sdcard is a wise precaution."
 
     execute below command on Raspberry Pi.
 
@@ -88,10 +88,12 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
     account key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ```
 
+    If you get `authentication error`, move to /etc/boinc-client and execute boinccmd and `sudo service boinc-client restart`.
+
 1. Join to the "Rosetta@home"
 
     ```shell
-    boinccmd --project_attach http://boinc.bakerlab.org/rosetta/ <your_account_key>
+    boinccmd --project_attach https://boinc.bakerlab.org/rosetta/ <your_account_key>
     ```
 
 ### GUI like interface
