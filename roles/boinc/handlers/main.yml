@@ -1,0 +1,8 @@
+---
+- name: restart_boinc-client
+  service:
+    name: boinc-client
+    state: restarted
+
+
+
