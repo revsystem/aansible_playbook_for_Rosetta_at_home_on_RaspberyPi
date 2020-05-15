@@ -27,25 +27,16 @@
   tags:
     - boinc_setup
 
-- name: insert options to cc_config.xml.
-  blockinfile:
-    dest: /var/lib/boinc-client/cc_config.xml
-    insertbefore: '^</cc_config>'
-    content: |
-      <options>
-        <alt_platform>aarch64-unknown-linux-gnu</alt_platform>
-        <allow_remote_gui_rpc>1</allow_remote_gui_rpc>
-      </options>
+- name: insert options to cc_config.xml and global_prefs_override.xml
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    backup: yes
+    owner: root
+    group: root
+  with_items:
+    - { src: etc/boinc-client/cc_config.xml, dest: /etc/boinc-client }
+    - { src: etc/boinc-client/global_prefs_override.xml, dest: /etc/boinc-client }
+    - { src: etc/boinc-client/gui_rpc_auth.cfg, dest: /etc/boinc-client }
   tags: boinc_setup
-
-- name: insert vram setting to global_prefs_override.xml
-  blockinfile:
-    dest: /etc/boinc-client/global_prefs_override.xml
-    insertbefore: '^</global_preferences>'
-    content: |
-      <max_ncpus_pct>100.000000</max_ncpus_pct>
-      <vm_max_used_pct>90.000000</vm_max_used_pct>
-      <ram_max_used_busy_pct>300.000000</ram_max_used_busy_pct>
-      <ram_max_used_idle_pct>300.000000</ram_max_used_idle_pc t>
-      <cpu_usage_limit>100.000000</cpu_usage_limit>
-  tags: boinc_setup
+  notify: restart_boinc-client
