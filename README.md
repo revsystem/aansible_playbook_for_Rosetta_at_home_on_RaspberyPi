@@ -39,15 +39,15 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
     Check your Raspberry Pi 3B+ IP address and write down to ssh.config like below.
 
     ```shell
-    vi ssh.conf
+    vi ssh.config
     ```
 
     ```text
     Host boinc-1
-    HostName 192.168.1.45
+        HostName 192.168.1.45
     ```
 
-    This ansible playbook set the hostname based on `Host` in ssh.conf.
+    This ansible playbook set the hostname based on `Host` in ssh.config.
     If you want to set another host name, please edit `Host` section.
 
     ---
