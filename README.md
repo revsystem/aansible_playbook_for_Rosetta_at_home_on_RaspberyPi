@@ -1,13 +1,13 @@
-# Ansible playbook for Raspberry Pi
+# Ansible playbook for Rosetta@home on Raspberry Pi
 
 ## Overview
 
-Target: Raspberry Pi 3B+, Raspbian Lite ( I'm using `Raspbian Lite (A port of Debian with no desktop environment))
-This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/rosetta/) with BOINC client on Raspberry Pi 3B+.
+Target: Raspberry Pi 3B+ and 4B, Raspbian Lite ( I'm using `Raspbian Lite (A port of Debian with no desktop environment))
+This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/rosetta/) with BOINC client on Raspberry Pi 3B+ and 4B.
 
 ## How to use
 
-1. Setting up your Raspberry Pi 3B+ as you can connect with SSH.
+1. Setting up your Raspberry Pi 3B+ or 4B as you can connect with SSH.
 
 1. get the 64bit kernel
 
@@ -36,11 +36,13 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
 
 1. Setting up for Ansible playbook
 
-    Check your Raspberry Pi 3B+ IP address and write down to ssh.config like below.
+    Check your Raspberry Pi 3B+ or 4B IP address and write down to ssh.config like below.
 
     ```shell
     vi ssh.config
     ```
+
+    e.g) IP address: 192.168.1.45
 
     ```text
     Host boinc-1
@@ -83,7 +85,7 @@ This ansible playbook support you run [Rosetta@home](https://boinc.bakerlab.org/
     then you see the below message. copy the account key string.
 
     ```shell
-    oll status: operation in progress
+    poll status: operation in progress
     poll status: operation in progress
     account key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ```
